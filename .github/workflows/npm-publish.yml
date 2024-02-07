@@ -1,30 +1,30 @@
-name: Publish to npm
+name: Publish npm package
 
 on:
   push:
-    branches:
-      - master  # Trigger the workflow when a push is made to the master branch
+    branches: master # Replace with branches that trigger the workflow (e.g., main)
 
 jobs:
   publish:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18.16  # Adjust the Node.js version as needed
+      # Authentication Step using npm adduser
+      - run: |
+          npm adduser --registry https://npm.pkg.github.com --username pavan-dulam --always-auth
+          # Optionally store token in npmrc (for convenience, NOT recommended):
+          # echo "//npm.pkg.github.com/:_authToken=${{ secrets.NPM_AUTH_TOKEN }}" >> ~/.npmrc
 
-      - name: Install dependencies
-        run: npm ci
+      # Install dependencies
+      - run: npm install
 
-      - name: Login to npm
-        run: npm config set //registry.npmjs.org/:_authToken ${NODE_AUTH_TOKEN}
-        env:
-          NODE_AUTH_TOKEN: ${secrets.NPM_AUTH_TOKEN}
+      # Build and test (add your specific commands here)
+      - run: npm run build && npm test
 
-      - name: Publish to npm
-        run: npm publish
+      # Publish step
+      - run: |
+          npm publish --access public # Replace with private access if needed
+        # Or:
+        # npm publish --registry https://npm.pkg.github.com @pavan-dulam/microservice-commons # For scoped package
+
