@@ -1,18 +1,28 @@
 {
-  "name": "microservice-commons",
+  "name": "@pavan-dulam/microservice-commons",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "/src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node src/index.js"
+  },
+  "repository": {
+    "type": "github",
+    "url": "https://github.com/pavan-dulam/microservice-commons"
+  },
+  "bugs": {
+    "url": "https://github.com/pavan-dulam/microservice-commons/issues"
   },
   "publishConfig": {
     "access": "public",
     "registry": "https://npm.pkg.github.com"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "nodeJS-microservice-essentials",
+    "utils"
+  ],
+  "author": "pavan-dulam",
+  "license": "MIT",
   "dependencies": {
     "axios": "1.6.5",
     "crypto": "1.0.1",
@@ -20,5 +30,6 @@
     "lodash": "4.17.21",
     "log4js": "6.9.1",
     "uuid": "9.0.1"
-  }
+  },
+  "homepage": "https://github.com/pavan-dulam/microservice-commons#readme"
 }
